@@ -101,7 +101,7 @@ class RtuMaster(Master):
 
         # For some RS-485 adapters, the sent data(echo data) appears before modbus response.
         # So read  echo data and discard it.  By yush0602@gmail.com
-        self.handle_local_echo = False
+        self.handle_local_echo = True
 
     def _do_open(self):
         """Open the given serial port if not already opened"""
