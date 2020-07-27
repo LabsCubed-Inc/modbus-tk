@@ -85,7 +85,7 @@ class RtuQuery(Query):
 class RtuMaster(Master):
     """Subclass of Master. Implements the Modbus RTU MAC layer"""
 
-    def __init__(self, serial, interchar_multiplier=1.5, interframe_multiplier=3.5, t0=None):
+    def __init__(self, serial, interchar_multiplier=1.5, interframe_multiplier=3.5, t0=None, handle_local_echo=False):
         """Constructor. Pass the pyserial.Serial object"""
         self._serial = serial
         self.use_sw_timeout = False
@@ -101,7 +101,7 @@ class RtuMaster(Master):
 
         # For some RS-485 adapters, the sent data(echo data) appears before modbus response.
         # So read  echo data and discard it.  By yush0602@gmail.com
-        self.handle_local_echo = True
+        self.handle_local_echo = handle_local_echo
 
     def _do_open(self):
         """Open the given serial port if not already opened"""
